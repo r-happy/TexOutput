@@ -2,11 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+    @apply outline-none;
+}
+
 html,
 body {
-  @apply bg-white dark:bg-gray-950;
+    @apply bg-neutral-50 dark:bg-neutral-950;
 
-  @media (prefers-color-scheme: dark) {
-    color-scheme: dark;
-  }
+    @media (prefers-color-scheme: dark) {
+        color-scheme: dark;
+    }
 }
+
