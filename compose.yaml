@@ -1,0 +1,13 @@
+version: '3'
+services:
+  remix-app:
+    image: texoutput  # すでにビルド済みのDockerイメージ名
+    build:
+      context: .            # Dockerfileのあるディレクトリ
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"         # ホストのポート3000をコンテナのポート3000にマッピング
+    environment:
+      - NODE_ENV=production  # 環境変数の設定
+    command: "npm start"    # コンテナ内で実行するコマンド
+    restart: always          # コンテナが停止した場合に自動再
