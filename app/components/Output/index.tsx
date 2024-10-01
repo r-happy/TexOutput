@@ -68,6 +68,10 @@ export default function Output() {
     `.trim(); // 余分な空白を除去
     }
 
+    const copyToClipboard = async () => {
+        await navigator.clipboard.writeText(latexCode);
+    };
+
     return (
         <div className="grid gap-4">
             {latexCode !== "" && (
@@ -76,9 +80,7 @@ export default function Output() {
                         className={
                             "absolute right-2 top-2 p-2 rounded-md bg-neutral-900 hover:bg-neutral-800"
                         }
-                        onClick={() => {
-                            navigator.clipboard.writeText(latexCode);
-                        }}
+                        onClick={() => copyToClipboard()}
                     >
                         <GoCopy className="size-4" />
                     </Button>
