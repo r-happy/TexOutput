@@ -1,13 +1,21 @@
-version: '3'
 services:
   remix-app:
-    image: texoutput  # すでにビルド済みのDockerイメージ名
+    image: texoutput         # すでにビルド済みのDockerイメージ
     build:
-      context: .            # Dockerfileのあるディレクトリ
+      context: .             # Dockerfileのあるディレクトリ
       dockerfile: Dockerfile
+    hostname: parkingman      # ホスト名の設定
     ports:
-      - "3000:3000"         # ホストのポート3000をコンテナのポート3000にマッピング
+      - '127.0.0.1:3000:3000' # ホスト側:コンテナ側のポートマッピング
     environment:
-      - NODE_ENV=production  # 環境変数の設定
-    command: "npm start"    # コンテナ内で実行するコマンド
-    restart: always          # コンテナが停止した場合に自動再
+      - NODE_ENV=production   # 環境変数の設定
+    command: "npm start"      # コンテナ内で実行するコマンド
+    restart: always           # コンテナが停止した場合に自動再起動
+    networks:
+      - remix-app-network      # カスタムネットワークの指定
+
+networks:
+  remix-app-network:
+    external: true             # 外部ネットワークを使用
+
+
